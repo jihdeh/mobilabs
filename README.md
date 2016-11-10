@@ -26,3 +26,9 @@ How to run
 - yarn install or npm install
 - npm run dev
 - visit localhost:5000
+
+
+TODO
+
+-- Implement infinite scroll
+-- Optimize for production (caching, builds)
