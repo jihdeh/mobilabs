@@ -1,0 +1,17 @@
+body,
+html {
+  font-family: 'Slabo 27px', serif;
+}
+
+.card {
+  .card-text {
+    height: 110px;
+    .card-title {
+      line-height: 30px !important;
+      font-size: 18px !important;
+    }
+  }
+  .card-image img {
+    height: 300px;
+  }
+}
