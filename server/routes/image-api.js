@@ -9,6 +9,7 @@ const router = koaRouter();
 api.use(bodyParser());
 
 router.get("/", queryRoutes.getAll);
+router.get("/top", queryRoutes.getTop);
 router.get("/:imageId", queryRoutes.getOne);
 
 

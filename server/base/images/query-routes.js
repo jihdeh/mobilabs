@@ -1,16 +1,15 @@
-import {Product} from "../../models";
+import axios from "axios";
+import {get} from "lodash";
 
+function* getOne(next) {}
 
-function* getOne(next) {
-	console.log("oluwan ooooo", this.params.productId)
-	let product = yield Product.find({productId: this.params.productId}).lean().exec();
-	console.log(product);
-  this.body = product;
+function* getAll(next) {}
+
+function* getTop(next) {
+  let images = yield axios.get(`https://api.imgur.com/3/gallery/top/top/0.json`, {
+    headers: { "Authorization": `Client-ID d78c0971800b4a2` }
+  });
+  this.body = get(images.data, "data");
 }
 
-function* getAll(next) {
-  let products = yield Product.find({}).lean().exec();
-  this.body = products;
-}
-
-export default { getOne, getAll };
+export default { getOne, getAll, getTop };

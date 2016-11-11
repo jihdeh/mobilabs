@@ -22,14 +22,6 @@ export default function Frontend() {
     this.body = renderApp(this, "homepage", data);
   });
 
-  router.get("/images", function*() {
-    this.body = renderApp(this, "Images", {});
-  });
-
-  router.get("/images/:imageId", function*(next) {
-    this.body = renderApp(this, "Image", data);
-  });
-
   return server
     .use(serve(path.join(__dirname, "../static")))
     .use(serve(path.join(__dirname, "../dist")))

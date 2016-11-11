@@ -1,9 +1,9 @@
 import { Map } from "immutable";
-import { pipe } from "ramda";
 import { set } from "../../util/functional-immutable";
 import {
   FETCH_IMAGES,
-  FETCH_SINGLE_IMAGE
+  FETCH_SINGLE_IMAGE,
+  FETCH_TOP_IMAGES
 } from "./homepage-actions";
 
 
@@ -15,6 +15,8 @@ const HomepageReducer = (state = initialState, action) => {
 			return set("images", action.items, state);
 		case FETCH_SINGLE_IMAGE:
 			return set("image", action.item, state);
+    case FETCH_TOP_IMAGES:
+      return set("topImages", action.topImages, state);
 		default:
 			return state;
 	}
