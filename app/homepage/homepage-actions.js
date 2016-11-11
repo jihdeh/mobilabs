@@ -4,6 +4,7 @@ import { fromJS } from "immutable";
 export const FETCH_IMAGES = "FETCH_IMAGES";
 export const FETCH_SINGLE_IMAGE = "FETCH_SINGLE_IMAGE";
 export const FETCH_TOP_IMAGES = "FETCH_TOP_IMAGES";
+export const FETCH_USER_IMAGES = "FETCH_USER_IMAGES";
 
 export const fetchImages = (images) => ({
   type: FETCH_IMAGES,
@@ -15,12 +16,17 @@ export const topSection = (topImages) => ({
   topImages
 });
 
+export const userSection = (userImages) => ({
+  type: FETCH_USER_IMAGES,
+  userImages
+});
+
 export const fetchSingleImage = (image) => ({
 	type: FETCH_SINGLE_IMAGE,
 	image
 });
 
-export const getAllImages = () => async dispatch => {
+export const getHotImages = () => async dispatch => {
   try {
     const response = await axios.get(`/api/v1/images`);
     dispatch(fetchImages(fromJS(response.data)));
@@ -35,6 +41,15 @@ export const getTopImages = () => async dispatch => {
     dispatch(topSection(fromJS(response.data)));
   } catch (error) {
     console.trace(error, "error fetching top images");
+  }
+};
+
+export const getUserImages = () => async dispatch => {
+  try {
+    const response = await axios.get("/api/v1/images/user");
+    dispatch(userSection(fromJS(response.data)));
+  } catch (error) {
+    console.trace(error, "error fetching user images");
   }
 };
 

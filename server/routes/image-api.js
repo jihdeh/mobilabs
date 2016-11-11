@@ -10,6 +10,7 @@ api.use(bodyParser());
 
 router.get("/", queryRoutes.getAll);
 router.get("/top", queryRoutes.getTop);
+router.get("/user", queryRoutes.getUser);
 router.get("/:imageId", queryRoutes.getOne);
 
 

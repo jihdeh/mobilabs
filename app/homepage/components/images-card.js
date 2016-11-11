@@ -12,8 +12,10 @@ import {connect } from "react-redux";
 import { Link } from "react-router";
 import HotImages from "./hot-images";
 import TopImages from "./top-images";
+import UserImages from "./user-images";
 import {
-  getTopImages
+  getTopImages,
+  getUserImages
 } from "../homepage-actions";
 
 
@@ -24,7 +26,11 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
   onTopClick: pipe(
     getTopImages,
-    dispatch)
+    dispatch),
+  onUserClick: pipe(
+    getUserImages,
+    dispatch
+  )
 });
 
 const enhance = compose(
@@ -32,7 +38,8 @@ const enhance = compose(
 	onlyUpdateForPropTypes,
 	setPropTypes({
     imagesList: IPropTypes.map,
-    onTopClick: PropTypes.func
+    onTopClick: PropTypes.func,
+    onUserClick: PropTypes.func
 	}),
   withState("section", "onSelectSection", "hot"),
   connect(mapStateToProps, mapDispatchToProps)
@@ -41,11 +48,11 @@ const enhance = compose(
 const HomeImages = enhance(({
   imagesList = new Map(),
   onTopClick,
+  onUserClick,
   onSelectSection,
   section = "hot"
 }) => {
   const images = Object.assign({}, imagesList.toJS());
-  // console.log(images)
 	return  (
 		<div>
       <ul className="tabs-img-grid">
@@ -55,10 +62,14 @@ const HomeImages = enhance(({
           onTopClick()
         )}
         >Top</li>
-        <li>User</li>
+        <li onTouchTap={ _ => pipe(
+          onSelectSection("user"),
+          onUserClick()
+        )}>User</li>
       </ul>
       {section === "hot" && <HotImages imagesList={imagesList}/>}
       {section === "top" && <TopImages imagesList={imagesList}/>}
+      {section === "user" && <UserImages imagesList={imagesList}/>}
 		</div>
 	)
 });
