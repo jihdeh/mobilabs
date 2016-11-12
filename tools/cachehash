@@ -1,0 +1,60 @@
+#! /usr/bin/env bash
+shopt -s extglob # Allow negative glob patterns
+
+(
+	cd dist
+
+	HASHMAP=$(find . -path static -prune -o -not -name '*.map' -type f -exec md5sum {} \;)
+	ROOTS=$(echo "$HASHMAP" | awk '{print $2}' | sed -e 's/\.[^\.]*$'//)
+	EXTENSIONS=$(echo "$HASHMAP" | awk '{print $2}' | awk -F'[.]' '{print $NF}' )
+	HASHES=$(echo "$HASHMAP" | awk '{print $1}')
+
+	MOVES=$(for i in $(seq $(echo -e "$HASHES" | wc -l)); do
+		SRC="$(echo "$ROOTS" | sed -n "${i}p").$(echo "$EXTENSIONS" | sed -n "${i}p")"
+		DEST="$(echo "$ROOTS" | sed -n "${i}p")-$(echo "$HASHES" | sed -n "${i}p").$(echo "$EXTENSIONS" | sed -n "${i}p")"
+		echo $SRC ../static/$DEST
+	done)
+
+	MAP_MOVES=$(for i in $(seq $(echo -e "$HASHES" | wc -l)); do
+		SRC="$(echo "$ROOTS" | sed -n "${i}p").$(echo "$EXTENSIONS" | sed -n "${i}p").map"
+		DEST="$(echo "$ROOTS" | sed -n "${i}p")-$(echo "$HASHES" | sed -n "${i}p").$(echo "$EXTENSIONS" | sed -n "${i}p").map"
+		if [[ -s $SRC ]]; then
+			echo $SRC ../static/$DEST
+		fi
+	done)
+
+	SRC_NAMES=$(for SRC in $(echo -e "$MOVES\n$MAP_MOVES" | awk '{print $1}'); do
+		echo "$SRC" | sed -e 's/^\.\///'
+	done)
+
+	DEST_NAMES=$(for DEST in $(echo -e "$MOVES\n$MAP_MOVES" | awk '{print $2}'); do
+		echo "$DEST" | sed -e 's/^\.\.\/static\/\.\///'
+	done)
+
+	SRC_DEST_MAP=$(for i in $(seq $(echo -e "$SRC_NAMES" | wc -l)); do
+		SRC=$(echo "$SRC_NAMES" | sed -n "${i}p")
+		DEST=$(echo "$DEST_NAMES" | sed -n "${i}p")
+		echo "\"/$SRC\": \"/$DEST\","
+	done)
+
+	JSON="{$(echo $SRC_DEST_MAP | sed -e 's/,$//')}"
+
+	rm -rfd ../static/!(hash-map.json) # Clean out everything except the hash-map, which will be overwritten. Removing that would break any watchers.
+
+	while read -r OPERATION; do
+		DEST=$(echo "$OPERATION" | awk '{print $2}')
+		mkdir -p $(dirname $DEST)
+		cp $OPERATION
+	done <<< "$MOVES"
+
+	while read -r OPERATION; do
+		DEST=$(echo "$OPERATION" | awk '{print $2}')
+		mkdir -p $(dirname $DEST)
+		cp $OPERATION
+	done <<< "$MAP_MOVES"
+
+	echo "$JSON" > ../static/hash-map.json
+)
+
+echo "Hashed static assets:"
+find static -type f -exec du -h {} +
