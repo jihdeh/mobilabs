@@ -26,7 +26,7 @@ const HotImages = enhance(({
       <Row>
       {images.data &&
           map((image, index) =>
-            <Col key={ index } s={1} m={3} l={3} className="image-grid">
+            <Col key={ index } s={12} m={4} l={3} className="image-grid">
               <Card header={<CardTitle reveal image={image.cover ? `http://i.imgur.com/${image.cover}m.jpg` : image.link} waves="light"/>}
                 title={`${image.title.substring(0, 50)}.....`}
                 textClassName="card-text"

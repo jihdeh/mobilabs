@@ -26,9 +26,18 @@ export const fetchSingleImage = (image) => ({
 	image
 });
 
-export const getHotImages = () => async dispatch => {
+export const getImages = (section = "hot", sort = "viral", showViral = true) => async dispatch => {
   try {
-    const response = await axios.get(`/api/v1/images`);
+    const response = await axios.get(`/api/v1/images/${section}/${sort}?showViral=${showViral}`);
+    dispatch(fetchImages(fromJS(response.data)));
+  } catch (error) {
+    console.trace(error);
+  }
+};
+
+export const getImagesWindow = (section = "hot", sort = "viral", windowSort="day", showViral = true) => async dispatch => {
+  try {
+    const response = await axios.get(`/api/v1/images/${section}/${sort}/${windowSort}?showViral=${showViral}`);
     dispatch(fetchImages(fromJS(response.data)));
   } catch (error) {
     console.trace(error);
@@ -44,9 +53,9 @@ export const getTopImages = () => async dispatch => {
   }
 };
 
-export const getUserImages = () => async dispatch => {
+export const getUserImages = (showViral = true) => async dispatch => {
   try {
-    const response = await axios.get("/api/v1/images/user");
+    const response = await axios.get(`/api/v1/images/user?showViral=${showViral}`);
     dispatch(userSection(fromJS(response.data)));
   } catch (error) {
     console.trace(error, "error fetching user images");

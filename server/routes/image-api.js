@@ -8,11 +8,10 @@ const router = koaRouter();
 
 api.use(bodyParser());
 
-router.get("/", queryRoutes.getAll);
 router.get("/top", queryRoutes.getTop);
 router.get("/user", queryRoutes.getUser);
-router.get("/:imageId", queryRoutes.getOne);
-
+router.get("/:section/:sort", queryRoutes.routeOne);
+router.get("/:section/:sort/:windowSort", queryRoutes.routeTwo);
 
 api
   .use(router.routes())

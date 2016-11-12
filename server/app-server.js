@@ -1,10 +1,5 @@
 import os from "os";
 import cluster from "cluster";
-import mongoose from "mongoose";
-mongoose.Promise = Promise;
-
-import mongoConnectionString from "../util/mongo-connection-string";
-import log from "../util/log";
 
 import App from "./app";
 
@@ -24,7 +19,6 @@ function startMaster() {
 }
 
 function startWorker() {
-  mongoose.connect(mongoConnectionString);
 
   const app = App();
   const port = process.env.PORT || 5555;

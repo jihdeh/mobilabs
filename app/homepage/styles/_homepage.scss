@@ -3,6 +3,10 @@ html {
   font-family: 'Slabo 27px', serif;
 }
 
+nav {
+  background-color: rgba(2, 1, 1, 0.88);
+}
+
 .card {
   .card-text {
     height: 110px;
@@ -30,4 +34,9 @@ ul.tabs-img-grid {
     display: inline;
     padding: 20px;
   }
+}
+
+.window-select {
+  clear: both;
+  z-index: 33;
 }

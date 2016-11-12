@@ -21,13 +21,13 @@ const enhance = compose(
 const UserImages = enhance(({
   imagesList = new Map()
 }) => {
-  const images = Object.assign({}, imagesList.toJS());
+  const imgurImages = Object.assign({}, imagesList.toJS());
   return  (
     <div>
       <Row>
-      {images.userImages &&
+      {imgurImages.images &&
           map((image, index) =>
-            <Col key={ index } s={1} m={3} l={3} className="image-grid">
+            <Col key={ index } s={12} m={4} l={3} className="image-grid">
               <Card header={<CardTitle reveal image={image.cover ? `http://i.imgur.com/${image.cover}m.jpg` : image.link} waves="light"/>}
                 title={`${image.title.substring(0, 50)}.....`}
                 textClassName="card-text"
@@ -40,7 +40,7 @@ const UserImages = enhance(({
                 >
               </Card>
             </Col>
-          )(images.userImages)
+          )(imgurImages.images)
         }
       </Row>
     </div>

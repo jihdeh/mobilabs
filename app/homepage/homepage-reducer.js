@@ -13,9 +13,9 @@ const initialState = new Map();
 const HomepageReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_IMAGES:
-      return set("images", action.items, state);
+      return set("images", action.images, state);
     case FETCH_SINGLE_IMAGE:
-      return set("image", action.item, state);
+      return set("image", action.image, state);
     case FETCH_TOP_IMAGES:
       return set("topImages", action.topImages, state);
     case FETCH_USER_IMAGES:
