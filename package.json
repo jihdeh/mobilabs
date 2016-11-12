@@ -68,12 +68,12 @@
     "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
     "util": "^0.10.3",
+    "babel-loader": "^6.2.5",
     "webpack": "^1.13.2",
     "winston": "^2.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
-    "babel-loader": "^6.2.5",
     "eslint": "^1.9.0",
     "eslint-config-airbnb-base": "^8.0.0",
     "eslint-loader": "^1.0.0",
