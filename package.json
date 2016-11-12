@@ -8,10 +8,12 @@
     "dev": "WEB_CONCURRENCY=1 nodemon --ignore dist -d 2 server/index.js & npm run watch",
     "build": "echo Build mode: ${NODE_ENV:-develop} && rm -R -f dist && mkdir -p dist && npm run app && npm run style:prod && wait && ./tools/cachehash",
     "app": "webpack",
+    "start": "node server/index.js",
     "watch:hash": "nodemon --watch dist --exec ./tools/cachehash",
     "watch": "npm run watch:hash & webpack --display-modules --progress --watch --display-error-details",
     "style": "node-sass -E \"UTF-8\" style/index.s[ac]ss > dist/style.css && postcss --use autoprefixer dist/style.css -r",
-    "style:prod": "node-sass -E \"UTF-8\" --output-style compressed style/index.s[ac]ss > dist/style.css && postcss --use autoprefixer dist/style.css -r"
+    "style:prod": "node-sass -E \"UTF-8\" --output-style compressed style/index.s[ac]ss > dist/style.css && postcss --use autoprefixer dist/style.css -r",
+    "postinstall": "npm run build"
   },
   "repository": {
     "url": "git@github.com:jihdeh/mobilabs.git",
