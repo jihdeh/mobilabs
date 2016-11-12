@@ -13,7 +13,7 @@ Api.imgur.com
 Bonus points:
 
 - [x] instead of calling Imgur API directly, proxy the API calls through your server (ex. Express);
-- [ ] provide a Dockerfile such that your solution can be run on Docker.
+- [x] provide a Dockerfile such that your solution can be run on Docker.
 
 
 App requirements:
