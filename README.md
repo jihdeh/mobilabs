@@ -6,8 +6,8 @@ Api.imgur.com
 - [x] show image description in the thumbnail, top or bottom;
 - [x] allow selecting the gallery section: hot, top, user;
 - [x] allow including / excluding viral images from the result set;
-- [ ] allow specifying window and sort parameters;
-- [ ] when clicking an image in the gallery - show its details: big image, title, description, upvotes, downvotes and score.
+- [x] allow specifying window and sort parameters;
+- [x] when clicking an image in the gallery - show its details: big image, title, description, upvotes, downvotes and score.
 
 
 Bonus points:

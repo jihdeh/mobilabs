@@ -14,8 +14,12 @@ export default function frontPage(
 				return (
 					<div>
 						<Navbar brand="logo" right>
-						  <NavItem href="get-started.html">Getting started</NavItem>
-						  <NavItem href="components.html">Components</NavItem>
+						  <NavItem href="https://github.com/jihdeh/mobilabs">
+                <i className="material-icons">star</i>
+              </NavItem>
+						  <NavItem href="https://github.com/jihdeh">
+                <i className="material-icons">person</i>
+              </NavItem>
 						</Navbar>
 						<Child {...this.props}/>
 					</div>
