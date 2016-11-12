@@ -34,6 +34,12 @@ ul.tabs-img-grid {
     display: inline;
     cursor: pointer;
     padding: 20px;
+    .viral-red {
+      color: red;
+    }
+    .viral-dark {
+      color: #bababa;
+    }
   }
   li:hover {
     border: 1px solid #ec3600;

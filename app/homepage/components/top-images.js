@@ -10,7 +10,8 @@ import onlyUpdateForPropTypes from "recompose/onlyUpdateForPropTypes";
 import { Map, toJS } from "immutable";
 import { Link } from "react-router";
 import { connect } from "react-redux";
-import { map} from "../../../util/functional-immutable";
+import { map, get} from "../../../util/functional-immutable";
+import LoadDataSpinner from "./load-data-spinner";
 
 import {
   getImages,
@@ -44,6 +45,7 @@ const TopImages = enhance(({
   const imgurImages = Object.assign({}, imagesList.toJS());
   return  (
     <div>
+      <LoadDataSpinner loading={ get("loading", imagesList) }/>
       <Row>
         <Col s={6}>
           <Input type="select" label="Sort By Window" onChange={evt => onWindowSortClick("top", "top", evt.target.value)}>

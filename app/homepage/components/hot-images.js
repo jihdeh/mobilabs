@@ -103,7 +103,7 @@ const HotImages = enhance(({
                 >
               </Card>
             </Col>
-          )(imgurImages.images) : <Preloader size='small'/>
+          )(imgurImages.images) : <Preloader size="small"/>
         }
       </Row>
     </div>

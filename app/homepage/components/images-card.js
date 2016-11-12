@@ -5,6 +5,7 @@ import compose from "recompose/compose";
 import setDisplayName from "recompose/setDisplayName";
 import setPropTypes from "recompose/setPropTypes";
 import withState from "recompose/withState";
+import withHandlers from "recompose/withHandlers";
 import onlyUpdateForPropTypes from "recompose/onlyUpdateForPropTypes";
 import {pipe} from "ramda";
 import { Map, toJS, List } from "immutable";
@@ -30,10 +31,12 @@ const enhance = compose(
 	onlyUpdateForPropTypes,
 	setPropTypes({
     imagesList: IPropTypes.map,
+    viralUser: PropTypes.bool,
     onCategoryClick: PropTypes.func
 	}),
   withState("section", "onSelectSection", "hot"),
   withState("sort", "onSortSection", "viral"),
+  withState("viralUser", "onToggleViral", true),
   connect(null, mapDispatchToProps)
 );
 
@@ -42,7 +45,9 @@ const HomeImages = enhance(({
   onSelectSection,
   onCategoryClick,
   section,
-  sort
+  onToggleViral,
+  sort,
+  viralUser
 }) => {
   const images = Object.assign({}, imagesList.toJS());
 	return  (
@@ -62,8 +67,11 @@ const HomeImages = enhance(({
           onCategoryClick("user", "rising")
         )}>User</li>
         {section === "user" && <li>
-          <span onTouchTap={ _ => onCategoryClick(section, "rising", false)}>
-            <i className="material-icons" title="Toggle Viral" alt="Toggle Viral">whatshot</i>
+          <span onTouchTap={ _ => pipe(
+            onToggleViral(!viralUser),
+            onCategoryClick(section, "rising", !viralUser)
+            )}>
+            <i className={viralUser ? "viral-red material-icons" : "viral-dark material-icons"} title="Toggle Viral" alt="Toggle Viral">whatshot</i>
           </span>
         </li>}
       </ul>
