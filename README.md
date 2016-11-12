@@ -21,10 +21,31 @@ App requirements:
 - [x] use ReactJS;
 - [x] and preferably Redux.
 
+Demo can be found [here](https://rocky-wildwood-24318.herokuapp.com)
 
-How to run
+## Development environment setup
+### macOS
+* Install Docker for Mac ([here](https://docs.docker.com/docker-for-mac/))
+* Verify your installation by running these commands
+- docker --version
+- docker-compose --version
+
+```
+  - git clone git@github.com:jihdeh/mobilabs.git
+  - cp .env.template .env
+  - docker-compose build
+  - docker-compose up
+
+```
+How to run locally
+
+```
 
 - git clone
 - yarn install or npm install
+- Add enviroment variables (IMGUR_AUHTORIZATION_ID => `your imgur client id`, NODE_ENV=development)
 - npm run dev
 - visit localhost:5000
+
+```
+
