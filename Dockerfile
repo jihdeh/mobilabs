@@ -11,7 +11,7 @@ COPY tools /usr/src/app/tools
 COPY style /usr/src/app/style
 COPY util /usr/src/app/util
 
-RUN npm install --loglevel=warn
+RUN npm install --loglevel=warn --prefix /usr/src/app
 
 COPY . /usr/src/app
 
