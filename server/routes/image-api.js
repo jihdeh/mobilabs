@@ -8,8 +8,6 @@ const router = koaRouter();
 
 api.use(bodyParser());
 
-router.get("/top", queryRoutes.getTop);
-router.get("/user", queryRoutes.getUser);
 router.get("/:section/:sort", queryRoutes.routeOne);
 router.get("/:section/:sort/:windowSort", queryRoutes.routeTwo);
 

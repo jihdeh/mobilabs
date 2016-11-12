@@ -18,28 +18,19 @@ import {
 } from "../homepage-actions";
 
 const mapDispatchToProps = (dispatch, props) => ({
-  onSortClick: (section, sort) => {
-    props.onSortSelect(sort);
-    dispatch(getImages(section, sort));
-  },
   onWindowSortClick: (section, sort, windowSort) => {
     props.onWindowSelect(windowSort);
-    sort = props.sort || sort;
-    console.log(section, props.sort, sort)
     dispatch(getImagesWindow(section, sort, windowSort));
   }
 });
-
 
 const enhance = compose(
   setDisplayName("TopImages"),
   onlyUpdateForPropTypes,
   setPropTypes({
     imagesList: IPropTypes.map,
-    onSortClick: PropTypes.func,
     onWindowSortClick: PropTypes.func
   }),
-  withState("sort", "onSortSelect"),
   withState("windowSort", "onWindowSelect"),
   connect(null, mapDispatchToProps)
 );
@@ -47,7 +38,6 @@ const enhance = compose(
 const TopImages = enhance(({
   imagesList = new Map(),
   onSortClick,
-  sort,
   windowSort,
   onWindowSortClick
 }) => {
@@ -55,13 +45,8 @@ const TopImages = enhance(({
   return  (
     <div>
       <Row>
-        <Col>
-          <Input s={6} type="select" label="Sort By" onChange={evt => windowSort ? onWindowSortClick("top", evt.target.value, windowSort) : onSortClick("top", evt.target.value)}>
-            <option value="viral">Viral</option>
-            <option value="top">Top</option>
-            <option value="time">Time</option>
-          </Input>
-          <Input s={6} type="select" label="Sort By Window" onChange={evt => onWindowSortClick("top", sort, evt.target.value)}>
+        <Col s={6}>
+          <Input type="select" label="Sort By Window" onChange={evt => onWindowSortClick("top", "top", evt.target.value)}>
             <option value="day">Day</option>
             <option value="week">Week</option>
             <option value="month">Month</option>

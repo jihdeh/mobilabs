@@ -15,9 +15,9 @@ export default function Frontend() {
   router.get("/", function*() {
     const images = yield axios.get(`https://api.imgur.com/3/gallery/hot/viral/0.json`, {
       headers: {"Authorization": `Client-ID ${process.env.IMGUR_AUHTORIZATION_ID}`}
-    })
+    });
     const data = {
-      imagesList: images.data
+      imagesList: {images: images.data.data}
     }
     this.body = renderApp(this, "homepage", data);
   });

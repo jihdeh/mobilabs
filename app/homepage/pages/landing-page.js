@@ -20,7 +20,6 @@ class HomeView extends Component {
 	}
 	render() {
 		const { imagesList } = this.props;
-    // console.log(imagesList);
 		return (
 			<div>
 				<Images imagesList={imagesList} />
