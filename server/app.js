@@ -17,7 +17,7 @@ function App() {
   app
     .use(responseTime())
     .use(logger())
-    // .use(etag())
+    // .use(etag()) //IN A REAL PRODUCTION SCENARIO, MAKE SURE TO UNCOMMENT THIS LINE, TO ENABLE FAST LOADING OF IMAGES
     .use(mount("/api", Api()))
     .use(mount("/", Frontend()));
   return app;
