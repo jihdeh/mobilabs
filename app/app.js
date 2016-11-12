@@ -6,6 +6,7 @@ injectTapEventPlugin();
 class App extends React.Component {
 
   componentDidMount() {
+    //TODO on load, if any
   }
 
   render() {

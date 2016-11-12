@@ -3,7 +3,7 @@ import mount from "koa-mount";
 import koa from "koa";
 import logger from "koa-logger";
 import responseTime from "koa-response-time";
-import etag from "koa-etag";
+// import etag from "koa-etag";
 
 import forward from "koa-forward-request";
 

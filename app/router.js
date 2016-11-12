@@ -1,15 +1,8 @@
 import React from "react";
-import {Route, IndexRoute, Router, browserHistory} from "react-router";
+import {Route, IndexRoute, Router} from "react-router";
 import App from "./app";
 import { connect } from "react-redux";
 import HomeView from "./homepage";
-import {
-	getAllImages,
-	getOneImage
-} from "./homepage/homepage-actions";
-
-// import ErrorPage from "./static-pages/error-page";
-// import About from "./static-pages/about-us";
 
 class NoMatch extends React.Component {
   render() {
@@ -23,8 +16,7 @@ class NoMatch extends React.Component {
 }
 
 const MobileLabsRouter = ({
-  history,
-  dispatch
+  history
 }) => (
 	  <Router history={ history }>
 	    <Route path="/" component={App}>

@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import DefaultHeaderData from "../menu/default-menu-data";
 import {Navbar, NavItem} from "react-materialize";
 
-export default function frontPage(
-		TopHeaderData = DefaultHeaderData
-	) {
+export default function frontPage() {
 	return function(Child) {
 		return class extends Component {
 			constructor(props) {
