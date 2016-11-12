@@ -10,7 +10,9 @@ import onlyUpdateForPropTypes from "recompose/onlyUpdateForPropTypes";
 import { Map, toJS } from "immutable";
 import { connect } from "react-redux";
 import { Link } from "react-router";
-import { map} from "../../../util/functional-immutable";
+import { map, get} from "../../../util/functional-immutable";
+import LoadDataSpinner from "./load-data-spinner";
+
 
 import {
   getImages,
@@ -53,6 +55,7 @@ const UserImages = enhance(({
   const imgurImages = Object.assign({}, imagesList.toJS());
   return  (
     <div>
+      <LoadDataSpinner loading={ get("loading", imagesList) }/>
       <Row>
         <Col>
           <Input s={6} type="select" label="Sort By" onChange={
@@ -80,11 +83,11 @@ const UserImages = enhance(({
                 <Modal
                   header={image.title}
                   trigger={
-                    <CardTitle image={image.cover ? `http://i.imgur.com/${image.cover}.jpg` : image.link} waves="light"/>
+                    <CardTitle image={image.cover ? `http://i.imgur.com/${image.cover}m.jpg` : image.link} waves="light"/>
                   }>
                   <Row>
                     <Col s={12} m={12} l={12}>
-                      <img src={image.cover ? `http://i.imgur.com/${image.cover}m.jpg` : image.link} />
+                      <img src={image.cover ? `http://i.imgur.com/${image.cover}.jpg` : image.link} />
                     </Col>
                     <Col s={12} m={6} l={6}>
                       <p>Title: {image.title}</p>

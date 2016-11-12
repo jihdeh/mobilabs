@@ -13,7 +13,7 @@ export default function frontPage(
 			render() {
 				return (
 					<div>
-						<Navbar brand="logo" right>
+						<Navbar brand={<i className="material-icons">spa</i>} right>
 						  <NavItem href="https://github.com/jihdeh/mobilabs">
                 <i className="material-icons">star</i>
               </NavItem>

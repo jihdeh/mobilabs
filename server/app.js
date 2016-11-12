@@ -3,6 +3,8 @@ import mount from "koa-mount";
 import koa from "koa";
 import logger from "koa-logger";
 import responseTime from "koa-response-time";
+import etag from "koa-etag";
+
 import forward from "koa-forward-request";
 
 import Api from "./api";
@@ -15,6 +17,7 @@ function App() {
   app
     .use(responseTime())
     .use(logger())
+    .use(etag())
     .use(mount("/api", Api()))
     .use(mount("/", Frontend()));
   return app;

@@ -1,5 +1,5 @@
 import React, {PropTypes} from "react";
-import {Card, CardTitle, Row, Col, Input, Modal} from "react-materialize";
+import {Card, CardTitle, Row, Col, Input, Modal, Preloader} from "react-materialize";
 import IPropTypes from "react-immutable-proptypes";
 import compose from "recompose/compose";
 import setDisplayName from "recompose/setDisplayName";
@@ -10,7 +10,8 @@ import { Link } from "react-router";
 import { connect } from "react-redux";
 import withHandlers from "recompose/withHandlers";
 import withState from "recompose/withState";
-import { map} from "../../../util/functional-immutable";
+import { map, get} from "../../../util/functional-immutable";
+import LoadDataSpinner from "./load-data-spinner";
 
 import {
   getImages,
@@ -48,11 +49,13 @@ const HotImages = enhance(({
   onSortClick,
   sort,
   hotWindowSort,
+
   onWindowSortClick
 }) => {
   const imgurImages = Object.assign({}, imagesList.toJS());
   return  (
     <div>
+      <LoadDataSpinner loading={ get("loading", imagesList) }/>
       <Row>
         <Col>
           <Input s={6} type="select" label="Sort By" onChange={
@@ -72,14 +75,14 @@ const HotImages = enhance(({
         </Col>
       </Row>
       <Row>
-      {imgurImages.images &&
+      {imgurImages.images ?
           map((image, index) =>
             <Col key={ index } s={12} m={4} l={3} className="image-grid">
               <Card header={
                 <Modal
                   header={image.title}
                   trigger={
-                    <CardTitle image={image.cover ? `http://i.imgur.com/${image.cover}.jpg` : image.link} waves="light"/>
+                    <CardTitle image={image.cover ? `http://i.imgur.com/${image.cover}m.jpg` : image.link} waves="light"/>
                   }>
                   <Row>
                     <Col s={12} m={12} l={12}>
@@ -100,7 +103,7 @@ const HotImages = enhance(({
                 >
               </Card>
             </Col>
-          )(imgurImages.images)
+          )(imgurImages.images) : <Preloader size='small'/>
         }
       </Row>
     </div>

@@ -2069,7 +2069,7 @@ esutils@^2.0.0, esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
 
-etag@~1.7.0:
+etag@^1.3.0, etag@~1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.7.0.tgz#03d30b5f67dd6e632d2945d30d6652731a34d5d8"
 
@@ -3435,6 +3435,13 @@ koa-compose@^2.2.0, koa-compose@^2.3.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/koa-compose/-/koa-compose-2.5.1.tgz#726cfb17694de5cb9fbf03c0adf172303f83f156"
 
+koa-etag:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/koa-etag/-/koa-etag-2.1.1.tgz#ab79894e027d0f09b1087a780e6babcca33af065"
+  dependencies:
+    etag "^1.3.0"
+    mz "^2.1.0"
+
 koa-forward-request@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/koa-forward-request/-/koa-forward-request-0.7.1.tgz#65d6f566a99e8e69a6601fed698aab58d8d1ad73"
@@ -4125,7 +4132,7 @@ mute-stream@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 
-mz@^2.3.1:
+mz@^2.1.0, mz@^2.3.1:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/mz/-/mz-2.5.0.tgz#2859025df03d46b57bb317174b196477ce64cec1"
   dependencies:

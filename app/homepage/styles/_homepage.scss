@@ -32,7 +32,14 @@ ul.tabs-img-grid {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   li {
     display: inline;
+    cursor: pointer;
     padding: 20px;
+  }
+  li:hover {
+    border: 1px solid #ec3600;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
   }
 }
 

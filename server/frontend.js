@@ -17,7 +17,7 @@ export default function Frontend() {
       headers: {"Authorization": `Client-ID ${process.env.IMGUR_AUHTORIZATION_ID}`}
     });
     const data = {
-      imagesList: {images: images.data.data}
+      imagesList: {images: images.data.data.splice(0, 20)}
     }
     this.body = renderApp(this, "homepage", data);
   });
@@ -25,6 +25,6 @@ export default function Frontend() {
   return server
     .use(serve(path.join(__dirname, "../static")))
     .use(serve(path.join(__dirname, "../dist")))
+    // .use(staticCache({ maxage: 60 * 1000 })) // Cache all pages for 1 minute
     .use(router.routes());
-  // .use(staticCache({ maxage: 60 * 1000 })) // Cache all pages for 1 minute
 }

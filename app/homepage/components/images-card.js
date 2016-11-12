@@ -48,7 +48,10 @@ const HomeImages = enhance(({
 	return  (
 		<div>
       <ul className="tabs-img-grid">
-        <li onTouchTap={ _ => onSelectSection("hot")}>Hot</li>
+        <li onTouchTap={ _ => pipe(
+          onSelectSection("hot"),
+          onCategoryClick("hot")
+        )}>Hot</li>
         <li onTouchTap={ _ => pipe(
           onSelectSection("top"),
           onCategoryClick("top")
@@ -64,6 +67,7 @@ const HomeImages = enhance(({
           </span>
         </li>}
       </ul>
+      <br/>
       {section === "hot" && <HotImages imagesList={imagesList}/>}
       {section === "top" && <TopImages imagesList={imagesList}/>}
       {section === "user" && <UserImages imagesList={imagesList}/>}

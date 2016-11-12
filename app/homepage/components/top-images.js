@@ -1,5 +1,5 @@
 import React, {PropTypes} from "react";
-import {Card, CardTitle, Row, Col, Input} from "react-materialize";
+import {Card, CardTitle, Row, Col, Input, Modal} from "react-materialize";
 import IPropTypes from "react-immutable-proptypes";
 import compose from "recompose/compose";
 import setDisplayName from "recompose/setDisplayName";
@@ -61,7 +61,7 @@ const TopImages = enhance(({
                 <Modal
                   header={image.title}
                   trigger={
-                    <CardTitle image={image.cover ? `http://i.imgur.com/${image.cover}.jpg` : image.link} waves="light"/>
+                    <CardTitle image={image.cover ? `http://i.imgur.com/${image.cover}m.jpg` : image.link} waves="light"/>
                   }>
                   <Row>
                     <Col s={12} m={12} l={12}>
