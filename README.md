@@ -1,4 +1,4 @@
-Mobilabs
+Let us play with react and some server rendering, shall we?
 ==========
 Api.imgur.com
 
@@ -48,4 +48,10 @@ How to run locally
 - visit localhost:5000
 
 ```
+
+Tech Stack
+ * React/Redux
+ * ImmutableJS
+ * KoaJS
+ * NodeJS
 
