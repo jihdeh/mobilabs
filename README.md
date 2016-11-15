@@ -45,7 +45,7 @@ How to run locally
 - yarn install or npm install
 - Add enviroment variables (IMGUR_AUHTORIZATION_ID => `your imgur client id`, NODE_ENV=development)
 - npm run dev
-- visit localhost:5000
+- visit localhost:5555
 
 ```
 
